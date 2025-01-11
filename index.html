@@ -33,7 +33,6 @@
         <!-- Body -->
         <div class="BodyBox">
             <h2 class="HeadingLevel1">Home</h2>
-            <h3 class="HeadingLevel2" align="center">Intro</h3>
             <p align="justify">
                 Intro
             </p>
@@ -49,7 +48,7 @@
             <div id="footer-placeholder"></div>
             <script>
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "yufooter.html", true);
+                xhr.open("GET", "footer.html", true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         document.getElementById("footer-placeholder").innerHTML = xhr.responseText;
