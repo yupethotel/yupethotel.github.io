@@ -35,7 +35,7 @@ body {
   z-index:2;
 }
 .TextBox h1 {
-  margin-bottom:5px; /* Adjust this value to control spacing below the h1 */
+  margin-bottom:10px; /* Adjust this value to control spacing below the h1 */
 }
 .TextBox h5 {
   margin-top:0px;   /* Adjust this value to control spacing above h5 */
