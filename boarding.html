@@ -8,11 +8,6 @@
             .BlurBG {
                 background-image:url('assets/banner-small.jpg')
             }
-            .slideshow-img {
-                width:100%;
-                height:auto;
-                opacity: 1;
-            }
         </style>
     </head>
     <body>
@@ -37,13 +32,35 @@
                 With ample space and advanced equipment, we ensure a stress-free and enjoyable experience for every pet. Whether it’s a routine grooming session or an extended boarding stay, your pets will feel right at home with us. At Yu Pet Hotel, your pet’s happiness and well-being are our top priorities. Book an appointment today and discover why we are the go-to choice for grooming and boarding in the community
             </p>
             <h3 class="HeadingLevel2" align="center">Photos</h3>
-            <p align="justify">
-                Photos
-            </p>
+            <div class="slideshow-container">
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/pictures/43-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/pictures/02-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/pictures/61-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/pictures/17-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/pictures/11-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/pictures/05-1.jpg"></div>
+                <br>
+                <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(2, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(3, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(4, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(5, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(6, slideshow2)"></span>
+                </div>
+            </div>
             <h3 class="HeadingLevel2" align="center">Videos</h3>
-            <p align="justify">
-                Videos
-            </p>
+            <div class="slideshow-container">
+                <div class="slideshow fade"><video controls style="display:block; width:auto; height:600px; margin:auto"><source src="assets/videos/02.mp4"></video></div>
+                <div class="slideshow fade"><video controls style="display:block; width:auto; height:600px; margin:auto"><source src="assets/videos/06.mp4"></video></div>
+                <div class="slideshow fade"><video controls style="display:block; width:auto; height:600px; margin:auto"><source src="assets/videos/09.mp4"></video></div>
+                <br>
+                <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(2, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(3, slideshow2)"></span>
+                </div>
+            </div>
             <!-- Footer -->
             <div id="footer-placeholder"></div>
             <script>
@@ -57,5 +74,50 @@
                 xhr.send();
             </script>
         </div>
+        <script>
+            // Function to initialize a slideshow
+            function initializeSlideshow(slideshow) {
+                slideshow.currentSlideIndex = 1;
+                showSlides(slideshow.currentSlideIndex, slideshow);
+                // Setting up correct onclick event for each dot
+                var dots = slideshow.getElementsByClassName("dot");
+                for(var i = 0; i < dots.length; i++) {
+                    let slideNumber = i + 1;
+                    dots[i].onclick = function() { 
+                        currentSlide(slideNumber, slideshow); 
+                    };
+                }
+            }
+            // Get all the slideshows and initialize them
+            var slideshows = document.getElementsByClassName("slideshow-container");
+            for(var i = 0; i < slideshows.length; i++) {
+                initializeSlideshow(slideshows[i]);
+            }
+            function plusSlides(n, slideshow) {
+                showSlides(slideshow.currentSlideIndex += n, slideshow);
+            }
+            function currentSlide(n, slideshow) {
+                showSlides(slideshow.currentSlideIndex = n, slideshow);
+            }
+            function showSlides(n, slideshow) {
+                var i;
+                var slides = slideshow.getElementsByClassName("slideshow");
+                var dots = slideshow.getElementsByClassName("dot");
+                if (n > slides.length) {
+                    slideshow.currentSlideIndex = 1
+                }
+                if (n < 1) {
+                    slideshow.currentSlideIndex = slides.length
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideshow.currentSlideIndex - 1].style.display = "block";
+                dots[slideshow.currentSlideIndex - 1].className += " active";
+            }
+        </script>
     </body>
 </html>
