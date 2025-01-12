@@ -9,7 +9,7 @@ body {
 
 .BlurBG {
   /* Add the blur effect */
-  filter:blur(0px);
+  filter:blur(5px);
   -webkit-filter:blur(0px);
   /* Center and scale the image nicely */
   position:absolute;
