@@ -8,11 +8,6 @@
             .BlurBG {
                 background-image:url('assets/banner-small.jpg')
             }
-            .slideshow-img {
-                width:100%;
-                height:auto;
-                opacity: 1;
-            }
         </style>
     </head>
     <body>
@@ -43,9 +38,27 @@
                 Dental Care: Keep your pet’s teeth clean and healthy with our specialized dental cleaning services.
             </p>
             <h3 class="HeadingLevel2" align="center">Photos</h3>
-            <p align="justify">
-                Photos
-            </p>
+            <div class="slideshow-container">
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/grooming-pictures/01-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/grooming-pictures/03-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/grooming-pictures/06-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/grooming-pictures/09-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/grooming-pictures/14-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/grooming-pictures/15-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/grooming-pictures/17-1.jpg"></div>
+                <div class="slideshow fade"><img class="slideshow-img" style="width:auto; height:600px" src="assets/grooming-pictures/Image_20250105124133-1.jpg"></div>
+                <br>
+                <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(2, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(3, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(4, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(5, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(6, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(7, slideshow2)"></span>
+                    <span class="dot" onclick="currentSlide(8, slideshow2)"></span>
+                </div>
+            </div>
             <h3 class="HeadingLevel2" align="center">Videos</h3>
             <p align="justify">
                 Videos
@@ -63,5 +76,50 @@
                 xhr.send();
             </script>
         </div>
+        <script>
+            // Function to initialize a slideshow
+            function initializeSlideshow(slideshow) {
+                slideshow.currentSlideIndex = 1;
+                showSlides(slideshow.currentSlideIndex, slideshow);
+                // Setting up correct onclick event for each dot
+                var dots = slideshow.getElementsByClassName("dot");
+                for(var i = 0; i < dots.length; i++) {
+                    let slideNumber = i + 1;
+                    dots[i].onclick = function() { 
+                        currentSlide(slideNumber, slideshow); 
+                    };
+                }
+            }
+            // Get all the slideshows and initialize them
+            var slideshows = document.getElementsByClassName("slideshow-container");
+            for(var i = 0; i < slideshows.length; i++) {
+                initializeSlideshow(slideshows[i]);
+            }
+            function plusSlides(n, slideshow) {
+                showSlides(slideshow.currentSlideIndex += n, slideshow);
+            }
+            function currentSlide(n, slideshow) {
+                showSlides(slideshow.currentSlideIndex = n, slideshow);
+            }
+            function showSlides(n, slideshow) {
+                var i;
+                var slides = slideshow.getElementsByClassName("slideshow");
+                var dots = slideshow.getElementsByClassName("dot");
+                if (n > slides.length) {
+                    slideshow.currentSlideIndex = 1
+                }
+                if (n < 1) {
+                    slideshow.currentSlideIndex = slides.length
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideshow.currentSlideIndex - 1].style.display = "block";
+                dots[slideshow.currentSlideIndex - 1].className += " active";
+            }
+        </script>
     </body>
 </html>
